@@ -1,16 +1,17 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import App from './containers/App'
-import {todoReducers} from './reducers/index'
+import { render } from "react-dom"
+import React from "react"
+import Head from "./components/head"
+import Form from "./components/form"
+import TodoList from "./components/todoList"
+import Footer from "./components/footer"
 
-let store = createStore(todoReducers)
 
-let rootElement = document.getElementById('app')
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  rootElement
+	<div>
+		<Head/>
+		<Form/>
+		<TodoList/>
+		<Footer/>
+	</div>,
+	document.getElementById('app')
 )

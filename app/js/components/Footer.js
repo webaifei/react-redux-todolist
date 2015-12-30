@@ -1,44 +1,16 @@
-import React, { Component, PropTypes } from "react"
+import React , { Component } from "react"
 
-export default class Footer extends Component {
-
-	renderFilter( filter, name){
-		if( filter == this.props.filter ){
-			return name;
-		}
-		return (
-	      <a href='#' onClick={e => {
-	        e.preventDefault()
-	        this.props.onFilterChange(filter)
-	      }}>
-	        {name}
-	      </a>
-		)
-	}
+export default class Footer extends Component{
 
 	render(){
 
 		return (
-			<p>
-	        Show:
-	        {' '}
-	        {this.renderFilter('SHOW_ALL', 'All')}
-	        {', '}
-	        {this.renderFilter('SHOW_COMPLETED', 'Completed')}
-	        {', '}
-	        {this.renderFilter('SHOW_ACTIVE', 'Active')}
-	        .
-	      </p>
+			<div className="well well-sm">
+				<span className="label label-primary">所有</span>
+				<span className="label label-success">已经完成</span>
+				<span className="label label-warning">未完成</span>
+			</div>
 
 		)
 	}
-}
-
-Footer.propTypes = {
-	onFilterChange: PropTypes.func.isRequired,
-	  filter: PropTypes.oneOf([
-	    'SHOW_ALL',
-	    'SHOW_COMPLETED',
-	    'SHOW_ACTIVE'
-	  ]).isRequired
 }
