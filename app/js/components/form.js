@@ -10,6 +10,7 @@ export default class Table extends Component{
 
 		if( text.length ){
 			this.props.onSubmit(text)
+			input.value = '';
 		}
 	}
 

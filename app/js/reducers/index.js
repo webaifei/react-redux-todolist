@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, DONE_TODO, SET_VISIBILITY, addTodo, doneTodo, setVisibility , VISIBILITY_FILTERS } from "../actions/action"
+import { ADD_TODO, DONE_TODO, REMOVE_TODO, SET_VISIBILITY, addTodo, doneTodo,removeTodo, setVisibility , VISIBILITY_FILTERS } from "../actions/action"
 
 const { SHOW_ALL } = VISIBILITY_FILTERS
 /**
  * todo reducer
- * 
+ * store.dispatch action之後 会调用所有的reducers 来判断是什么type的action 从而更新不同部分的state
+ *
  */
 
 function todos( state = [], action ){
+	console.log( state, 'cur state')
 	switch( action.type ){
 		case ADD_TODO:
 			return [
@@ -21,17 +23,24 @@ function todos( state = [], action ){
 		//更新的时候分成了三个部分 把index之前和之后的部分截取出来 
 		//
 		case DONE_TODO:
+			console.log(action , 'done action')
 			return [
-				...state.splice( 0, action.id ),
+				...state.slice( 0, action.id ),
 				Object.assign({}, {
 					status: true,
 					text: state[action.id].text
 				}),
-				...state.splice(action.id+1)
+				...state.slice(action.id+1)
 
 
 
 			];
+		case REMOVE_TODO:
+			var newState = state.concat();
+				newState.splice(action.id,1);
+			return [
+				...newState
+			]
 		default:
 			return state;
 
@@ -43,6 +52,7 @@ function todos( state = [], action ){
  */
 
 function visibileType( state= SHOW_ALL, action ){
+	console.log(action, 'action type')
 	switch( action.type ){
 		case SET_VISIBILITY:
 			return action.filter;

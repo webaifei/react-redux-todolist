@@ -8,7 +8,9 @@
 
 export const ADD_TODO = 'ADD_TODO'
 export const DONE_TODO = 'DONE_TODO'
+export const REMOVE_TODO = "REMOVE_TODO"
 export const SET_VISIBILITY = 'SET_VISIBILITY'
+
 export const VISIBILITY_FILTERS = {
 	SHOW_ALL:'SHOW_ALL',
 	SHOW_DONE:"SHOW_DONE",
@@ -31,11 +33,17 @@ export function doneTodo( id ){
 	}
 } 
 
+export function removeTodo( id ){
+	return {
+		type:REMOVE_TODO,
+		id: id
+	}
+}
 
-export function setVisibility( showType ){
+export function setVisibility( filter ){
 	return {
 		type: SET_VISIBILITY,
-		showType
+		filter
 	}
 }
 

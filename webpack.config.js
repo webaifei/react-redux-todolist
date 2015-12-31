@@ -40,7 +40,7 @@ module.exports = {
 		})
 	],
 	devServer:{
-		contnetBase:[config.dist],
+		contentBase:config.dist,
 
 	}
 
